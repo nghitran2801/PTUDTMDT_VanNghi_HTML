@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học HTML - Pastel Bling Bling Edition</title>
+    
+    <!-- Dòng code gắn icon lên thanh tab -->
+    <link rel="icon" type="image/png" href="meow-icon.png">
+</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học HTML - Pastel Bling Bling Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Thư viện Icon FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 1. Nền Pastel chuyển động mượt mà (Lavender - Hồng phấn - Xanh trời) */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(-45deg, #f3e8ff, #fce7f3, #e0f2fe, #fae8ff);
+            background-size: 400% 400%;
+            animation: pastelFlow 10s ease infinite;
+            color: #4c1d95;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 2. Hiệu ứng hạt Bling Bling kim tuyến trắng & tím nhấp nháy khắp nền */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(3px 3px at 30px 40px, #ffffff, transparent),
+                radial-gradient(2.5px 2.5px at 110px 150px, #c084fc, transparent),
+                radial-gradient(3.5px 3.5px at 190px 80px, #ffffff, transparent),
+                radial-gradient(2.5px 2.5px at 260px 210px, #f472b6, transparent),
+                radial-gradient(3px 3px at 340px 120px, #ffffff, transparent),
+                radial-gradient(2.5px 2.5px at 80px 240px, #a855f7, transparent);
+            background-size: 380px 280px;
+            animation: blingSparkle 1.6s infinite alternate;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes pastelFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes blingSparkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.03); }
+        }
+
+        @keyframes textBling {
+            0%, 100% { text-shadow: 0 0 8px #ffffff, 0 0 16px rgba(192, 132, 252, 0.5); }
+            50% { text-shadow: 0 0 14px #ffffff, 0 0 28px rgba(232, 121, 249, 0.9); }
+        }
+
+        @keyframes cardBling {
+            0%, 100% { box-shadow: 0 8px 28px rgba(168, 85, 247, 0.12), 0 0 10px rgba(255, 255, 255, 0.7); }
+            50% { box-shadow: 0 12px 36px rgba(217, 70, 239, 0.25), 0 0 22px rgba(255, 255, 255, 1); }
+        }
+
+        /* Khung lưới Bento chính */
+        .bento-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            max-width: 960px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Style chung cho từng ô Bento kính trắng sữa */
+        .bento-box {
+            background: rgba(255, 255, 255, 0.65);
+            border: 1.5px solid rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 22px;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            animation: cardBling 2.4s infinite alternate;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hiệu ứng khi rê chuột vào từng ô */
+        .bento-box:hover {
+            border-color: #d8b4fe;
+            background: rgba(255, 255, 255, 0.85);
+            transform: translateY(-4px);
+        }
+
+        /* Ô 1: Tiêu đề lớn chiếm trọn hàng trên cùng (3 cột) */
+        .box-header {
+            grid-column: span 3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.85), rgba(243, 232, 255, 0.8));
+        }
+
+        .header-text h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #6b21a8;
+            animation: textBling 1.6s infinite ease-in-out;
+            margin-bottom: 6px;
+        }
+
+        .header-text p {
+            font-size: 14px;
+            color: #7e22ce;
+            opacity: 0.85;
+        }
+
+        .badge-live {
+            background: #ffffff;
+            border: 1.5px solid #e9d5ff;
+            color: #7e22ce;
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(192, 132, 252, 0.2);
+        }
+
+        .dot-blink {
+            width: 8px;
+            height: 8px;
+            background: #c084fc;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #c084fc;
+            animation: blink 0.9s infinite alternate;
+        }
+
+        @keyframes blink {
+            from { opacity: 0.3; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Ô 2: Ô chứa Video từ máy tính (chiếm 2 cột) */
+        .box-video {
+            grid-column: span 2;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #7e22ce;
+            margin-bottom: 10px;
+            padding-left: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .box-video video {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 16px;
+            background: #000;
+            border: 1.5px solid #ffffff;
+        }
+
+        /* Ô 3: Ô chứa Ảnh Mèo (chiếm 1 cột) */
+        .box-cat {
+            grid-column: span 1;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box-cat img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1.5px solid #ffffff;
+        }
+
+        /* Ô 4: Ô chứa danh sách 20 Môn học dạng thẻ tag hiện đại */
+        .box-subjects {
+            grid-column: span 3;
+        }
+
+        .subject-grid {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+            max-height: 180px;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        /* Tùy chỉnh thanh cuộn tông pastel */
+        .subject-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+        .subject-grid::-webkit-scrollbar-thumb {
+            background: #d8b4fe;
+            border-radius: 10px;
+        }
+
+        .subject-grid li {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #f3e8ff;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #581c87;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .subject-grid li i {
+            color: #c084fc;
+            font-size: 12px;
+        }
+
+        .subject-grid li:hover {
+            background: linear-gradient(90deg, #c084fc, #f472b6);
+            color: #ffffff;
+            border-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.4);
+            transform: scale(1.03);
+        }
+
+        .subject-grid li:hover i {
+            color: #ffffff;
+        }
+
+        /* Tự động gập thành 1 cột trên điện thoại */
+        @media (max-width: 768px) {
+            .bento-container {
+                grid-template-columns: 1fr;
+            }
+            .box-header, .box-video, .box-cat, .box-subjects {
+                grid-column: span 1;
+            }
+            .box-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bento-container">
+        
+        <!-- Ô 1: Banner Chào mừng -->
+        <div class="bento-box box-header">
+            <div class="header-text">
+                <h1> <img src="Meow.png" style="width: 80px; height: auto; vertical-align: middle; margin-right: 8px;"> 
+    Chào mừng đến với nội dung học HTML
+</h1>
+                <p>Không gian thực hành HTML5 • CSS3 • Pastel Bling Bling</p>
+            </div>
+            <div class="badge-live">
+                <span class="dot-blink"></span> Đang học HTML
+            </div>
+        </div>
+
+        <!-- Ô 2: Video từ máy tính -->
+        <div class="bento-box box-video">
+            <div class="box-label"><i class="fa-solid fa-film"></i> Clip thực hành (Autoplay)</div>
+            <video autoplay muted loop controls playsinline>
+                <source src="Clip-Meow.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Ô 3: Hình ảnh con mèo -->
+        <div class="bento-box box-cat">
+            <div class="box-label"><i class="fa-solid fa-cat"></i> Trợ giảng mèo</div>
+            <img src="https://i.pinimg.com/564x/44/2a/df/442adf3ae086617cabcb9dcb31c8918a.jpg" alt="Hình mèo" style="width: 100%; height: 320px; object-fit: cover;">
+        </div>
+
+        <!-- Ô 4: Danh sách 20 môn học dạng thẻ Tag -->
+        <div class="bento-box box-subjects">
+            <div class="box-label"><i class="fa-solid fa-layer-group"></i> Danh sách 20 môn học</div>
+            <ul class="subject-grid">
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 1</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 2</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 3</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 4</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 5</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 6</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 7</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 8</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 9</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 10</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 11</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 12</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 13</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 14</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 15</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 16</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 17</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 18</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 19</li>
+    <li><img src="play.png" style="width: 18px; height: 18px; border-radius: 50%; vertical-align: middle;"> Môn học 20</li>
+</ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
